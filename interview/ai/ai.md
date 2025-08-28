@@ -2,7 +2,9 @@ AI
 --
 
 # Hugging Face
+
 ![ai-hugging-face](images/ai.hugging-face.png)
+
 Hugging face是当前最大的AI模型资源库，类似于：
 - github是最大代码资源库
 - dockerhub是最大的景象资源库
@@ -10,11 +12,13 @@ Hugging face是当前最大的AI模型资源库，类似于：
 Hugging face里面共享的AI模型不仅仅是大语言模型(Large Language Model)，还要其他的模型，比如文生图的模型、文生视频的模型、图像识别的模型、机器视觉的模型等等。
 
 比如，以下就是最新的Deepseek-v3.1的模型：
+
 ![ai-model-deepseek](images/ai.model-deepseek-v3.1.png)
 
 # Ollama
-![ai-ollama](images/ai.ollama.png)
 Ollama是一个应用程序，可以下载和管理常见的AI模型，并且在本地快速启动。Ollama的功能非常类似于Docker.
+
+![ai-ollama](images/ai.ollama.png)
 
 ## AI模型
 AI模型的使用简单来说包含了三层：
@@ -50,9 +54,10 @@ model = torch.load("deepseek-model.pth")
 
 ## Ollama的使用
 Ollama的github官网提供不同操作系统的安装包，可以直接下载安装
+
 ![ai-ollama-install](images/ai.ollama-install.png)
 
-ollama安装完成后，使用`ollama -h`可以查看ollama的常用命令，非常类似docker命令，简单明了
+ollama安装完成后，使用**ollama -h**可以查看ollama的常用命令，非常类似docker命令，简单明了
 ```commandline
 % ollama help
 Large language model runner
@@ -82,7 +87,7 @@ Flags:
 Use "ollama [command] --help" for more information about a command.
 ```
 
-`ollama list`查询当前已经下载到本地的模型
+**ollama list** 查询当前已经下载到本地的模型
 ```commandline
 % ollama list
 NAME                 ID              SIZE      MODIFIED
@@ -94,7 +99,7 @@ qwen2.5-coder:32b    b92d6a0bd47e    19 GB     3 weeks ago
 deepseek-r1:7b       755ced02ce7b    4.7 GB    4 weeks ago
 ```
 
-`ollama pull`下载一个模型文件
+**ollama pull** 下载一个模型文件
 ```commandline
 % ollama pull deepseek-r1:1.5b
 pulling manifest
@@ -111,7 +116,7 @@ pulling manifest
 pulling manifest
 pulling aabd4debf0c8:  55% ▕█████████████████████████████████████████████████████                                             ▏ 612 MB/1.1 GB  2.2 MB/s   3m50s
 ```
-`ollama run`运行一个模型，比如运行一个qwen3:14b的模型，然后就可以在命令行下面提问交互了：
+**ollama run** 运行一个模型，比如运行一个qwen3:14b的模型，然后就可以在命令行下面提问交互了：
 ```commandline
 % ollama run qwen3:14b
 >>> 你是谁？
@@ -131,13 +136,13 @@ Thinking...
 
 >>> Send a message (/? for help)
 ```
-`ollama ps`查询当前正在运行的模型
+**ollama ps** 查询当前正在运行的模型
 ```commandline
 % ollama ps
 NAME         ID              SIZE     PROCESSOR    CONTEXT    UNTIL
 qwen3:14b    bdbd181c33f2    10 GB    100% GPU     4096       2 minutes from now
 ```
-`ollama stop`停止当前正在运行的模型
+**ollama stop** 停止当前正在运行的模型
 ```commandline
 % ollama stop qwen3:14b
 % ollama ps
@@ -145,8 +150,10 @@ NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL
 ```
 
 ## 关于Ollama的模型和本地部署成本
+
 ![ai-ollama-model .png](images/ai.ollama-model.png)
-以上是ollama官网的deepseek-r1模型，同样的模型有不同的`规格`，比如：
+
+以上是ollama官网的deepseek-r1模型，同样的模型有不同的**规格**，比如：
 - deepseek-r1:671b，表示它的参数量有671b，模型文件大小有404GB，部署需要大概400G左右的显存或内存；
 - deepseek-r1:32b，表示它的参数量有32b，模型文件大小有20GB，部署需要大概20G左右的显存或内存；
 - deepseek-r1:14b，表示它的参数量有14b，模型文件大小有9GB，部署需要大概8~9G左右的显存或内存；
@@ -154,7 +161,7 @@ NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL
 以此类推。ollama使用的模型一般是.gguf格式，可以使用Hugging face下载的其他格式的模型文件创建适合ollama使用的.gguf格式的模型。
 
 
-目前，AI模型的本地部署主要使用Nvidia的显卡，能够部署多大的模型取决于显卡搭载的显存容量，如果模型大小大于显存，就会调用系统的内存，这时模型的响应速度就会剧降，俗称`爆显存`，比如deepseek-r1:32b可以在HD5090上部署，但部署在HD5080上就会爆显存。
+目前，AI模型的本地部署主要使用Nvidia的显卡，能够部署多大的模型取决于显卡搭载的显存容量，如果模型大小大于显存，就会调用系统的内存，这时模型的响应速度就会剧降，俗称**爆显存**，比如deepseek-r1:32b可以在HD5090上部署，但部署在HD5080上就会爆显存。
 
 目前，消费级显卡的规格和市场价格大概是：
 
@@ -185,20 +192,26 @@ Mac家族的规格和价格大概是：
 > 不同模型有不同的智能程度，一般来说参数越多越聪明，但体积也越大，部署成本就越高。相同模型在不同硬件资源上部署后的响应速度，即返回token的速度也是不同的，一般来说，要流畅的运行问答，需要响应速度至少在`10 token/s`以上，低于这个速度时，响应过慢，难以满足实际使用需求。
 
 # Open WebUI
+
 ![ai-open-webui.png](images/ai.open-webui.png)
+
 Ollama提供的交互方式是命令行，对普通用户不友好，大家更习惯的还是类似Chatgpt和Deepseek那样的Web网页，所以Ollama的公司提供了一个专门用于大模型聊天交互的Web程序，最早叫OllamaUI，后来改名Open WebUI。
 
 Open WebUI的安装方式有多种，最简单的方式是使用docker安装：
 ```commandline
 docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 ```
+
 然后使用浏览器访问`http://localhost:3000`，就可以得到和Chatgpt、Deepseek官网近乎相同的使用体验
+
 ![ai-open-webui-local](images/ai.open-webui-local.png)
 
 你可以在WebUI上直接选择要使用的模型，非常方便（当心不要同时开启过多模型，不然会爆显存、内存的）
+
 ![ai-open-webui-multi-models](images/ai.open-webui-multi-models.png)
 
 还可以查看不同模型本地部署时的响应速度
+
 ![ai.open-webui-speed](images/ai.open-webui-speed.png)
 
 # Continue plugin
