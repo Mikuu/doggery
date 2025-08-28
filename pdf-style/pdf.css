@@ -1,0 +1,183 @@
+/**
+ * Markdown 转 PDF 样式表 - 优化版
+ * 优化: 1. 减小代码块字号以减少换行 2. 保持其他样式不变
+ */
+
+/* ===== 基础字体与排版 ===== */
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 1em;
+  font-size: 14px; /* 基础字体大小 */
+}
+
+/* ===== 标题样式 ===== */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 { font-size: 1.8em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1.1em; }
+h5 { font-size: 1em; }
+h6 { font-size: 0.9em; color: #6a737d; }
+
+/* ===== 图片处理 - 防止截断 ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+  box-sizing: border-box;
+}
+
+/* ===== 表格样式 ===== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  display: block;
+  overflow-x: auto;
+  font-size: 0.9em; /* 表格字体稍小 */
+}
+
+th, td {
+  border: 1px solid #dfe2e5;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+
+th {
+  background-color: #f6f8fa;
+  font-weight: 600;
+}
+
+/* ===== 代码块样式 - 减小字号以减少换行 ===== */
+
+/* 行内代码 */
+code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Source Code Pro', monospace;
+  background-color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.85em; /* 行内代码字号减小 */
+  color: #d63384;
+  white-space: normal;
+}
+
+/* 代码块 - 减小字号 */
+pre {
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 1em;
+  margin: 1em 0;
+  line-height: 1.4; /* 行高略微减小以匹配小字号 */
+  border: 1px solid #e1e4e8;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-size: 0.85em; /* 代码块字号减小 */
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: 1em; /* 使用相对单位，继承pre的设置 */
+  white-space: inherit;
+  display: block;
+}
+
+/* 特定代码块类型的高亮 */
+.code-commandline, .language-commandline {
+  border-left: 4px solid #0366d6;
+  background-color: #f8f9fa;
+}
+
+.code-python, .language-python {
+  border-left: 4px solid #3572A5;
+}
+
+/* 语法高亮颜色 */
+.hljs-keyword { color: #d73a49; font-weight: bold; }
+.hljs-built_in { color: #6f42c1; }
+.hljs-string { color: #032f62; }
+.hljs-comment { color: #6a737d; font-style: italic; }
+.hljs-number { color: #005cc5; }
+.hljs-title { color: #6f42c1; }
+.hljs-params { color: #24292e; }
+.hljs-meta { color: #e36209; }
+
+/* 命令行提示符样式 */
+.language-commandline .hljs-meta {
+  color: #22863a;
+  user-select: none;
+}
+
+/* ===== 引用块样式 ===== */
+blockquote {
+  margin: 1em 0;
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 4px solid #dfe2e5;
+  font-size: 0.95em; /* 引用块字体略小 */
+}
+
+/* ===== 列表样式 ===== */
+ul, ol {
+  padding-left: 2em;
+  margin: 1em 0;
+}
+
+li {
+  margin: 0.25em 0;
+}
+
+/* ===== 水平分割线 ===== */
+hr {
+  height: 1px;
+  background-color: #eaecef;
+  border: none;
+  margin: 2em 0;
+}
+
+/* ===== 链接样式 ===== */
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== 打印/PDF特定优化 ===== */
+@media print {
+  body {
+    padding: 0;
+    font-size: 12px; /* 打印时使用更小的基础字号 */
+  }
+
+  /* 确保代码块在打印/PDF中也能正确换行 */
+  pre, code {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    font-size: 0.8em; /* 打印时代码字号更小 */
+  }
+
+  /* 避免在代码块内分页 */
+  pre {
+    page-break-inside: avoid;
+  }
+
+  /* 调整打印时的标题大小 */
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.4em; }
+  h3 { font-size: 1.2em; }
+}
