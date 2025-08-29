@@ -212,10 +212,14 @@ docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-
 
 还可以查看不同模型本地部署时的响应速度
 
-![ai.open-webui-speed](images/ai.open-webui-speed.png)
+![ai-open-webui-speed](images/ai.open-webui-speed.png)
 
 # Continue plugin
+Continue是一个IDE插件，可以在IDE中接入在线或者本地大模型来辅助代码开发。如下图，PyCharm中安装Continue后，就可以配置Continue使用我们本地ollama的大模型了，常用的功能有：
+- 代码自动补齐，Continue会实时根据当前光标所在位置的上下文来自动帮你补全代码，比如你先写一段函数的功能注释，Continue会自动给出函数，然后你点击tab键就可以输入AI自动生成的代码；
+- 聊天，Continue提供一个聊天窗口，功能和普通的Web问答相同，但AI会把当前打开的代码文件作为上下文，你也可以在聊天中使用@符号来引入当前工程中的文件或者代码片段，从而更高效的让本地AI辅助进行代码开发；
 
+![ai-continue-plugin.png](images/ai.continue-plugin.png)
 
 
 
