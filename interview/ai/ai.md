@@ -221,5 +221,8 @@ Continue是一个IDE插件，可以在IDE中接入在线或者本地大模型来
 
 ![ai-continue-plugin.png](images/ai.continue-plugin.png)
 
+Continue的配置可以使用图形化界面，也可以在`config.yaml`文件中进行配置。
+![ai-continue-config](images/ai.continue-config.png)
+
 
 
